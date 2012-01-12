@@ -1,0 +1,10 @@
+build
+class
+*.swp
+log
+out
+snm
+toc
+aux
+nav
+pdf
