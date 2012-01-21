@@ -8,30 +8,29 @@
 ------------------------------------------------------------------------------
 下面列出 Gradle_ 拥有的一些功能。
 
- :Declarative builds and build-by-convention:
-    基于Groovy的高扩展的领域语言（DSL）是Gradle的核心。
-
- :Language for dependency based programming:
+**申明式构建和惯例式构建**
+    基于Groovy的高扩展的领域语言（DSL）是Gradle的核心。Gradle通过提供可以任意组装的语言元素，把声明式构建推向了一个新的高度。
+Language for dependency based programming
     声明式语言
- :Structure you build:
+Structure you build
     结构化你的脚本
- :Deep API:
+Deep API
     深入API
- :Gradle Scales:
+Gradle Scales
     Gradle 的扩展性非常好。
- :多项目构建:
+多项目构建
     Gradle 支持多个项目构建。
- :多样的依赖管理:
+多样的依赖管理
     不同的团队可能会喜欢不同的依赖管理。
- :Gradle是第一个集成构建工具:
+Gradle是第一个集成构建工具
     Ant任务是一等公民。
- :迁移成本低:
+迁移成本低
     Gradle 可以适配任何结构。
- :Groovy:
+Groovy
     Gradle的构建脚本是用Groovy写的而不是xml。
- :Gradle 包装器:
+Gradle 包装器
     Gradle 包装器允许你扩展。
- :免费并且开源:
+免费并且开源
     Gradle是一个开源项目。他使用 ASL_ 开源协议。
 
 为什么选Groovy

@@ -8,11 +8,17 @@ Gradle文档中文版
 
 Contents:
 
-.. toctree::
-   :maxdepth: 2
+..  toctree::
+    :maxdepth: 2
     
-   intr
-   overview
+    intr
+    overview
+    install
+    buildbasic
+    javaquick
+    dependency
+    groovystart
+    webapp
 Indices and tables
 ==================
 
