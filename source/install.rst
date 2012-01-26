@@ -51,6 +51,10 @@ Gradle的发行包是一个Zip格式的文件。在一个发行包会包括如�
 
 JVM设定
 ------------------------------------------------------------    
+为Gradle设定的JVM选项可以通过 ``GRADLE_OPTS`` 和 ``JAVA_OPTS`` 这两个环境变量来设定。这两个变量也可以同时使用。 ``JAVA_OPTS`` 这个变量是多个Java 应用程序所公用的。 典型的用法是在 ``JAVA_OPTS`` 中设定HTTP代理，在 ``GRADLE_OPTS`` 中设定内存相关内容。 另外这两个变量也可以在 **gradle** 或 **gradlew** 脚本的顶端设定。
 
+获取帮助
+------------------------------------------------------------    
+你可以在查看 ``GRADLE_HOME/docs/userguide/userguide.html`` 处的用户手册。当然你也可在 `Gradle官网 <http://www.gradle.org/documentation.html>` 找到他。 或者在命令行中 **gradle help** 打印出命令的帮助。通过 **gradle tasks** 打印出当前Gradle构建所包含的所有任务。
 
 .. _Gradle的官网: http://gradle.org
