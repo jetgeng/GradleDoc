@@ -1,5 +1,6 @@
 .. highlight:: rst
 
-.. _dependency
+.. _dependency:
+
 依赖管理基础
 ============================

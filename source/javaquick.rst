@@ -1,6 +1,6 @@
 .. highlight:: rst
 
-.. _javaquickstart
+.. _javaquickstart:
 
 Java项目快速上手
 ============================

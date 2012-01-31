@@ -1,6 +1,7 @@
 .. highlight:: rst
 
-.. _install
+.. _install:
+
 安装Gradle
 ============================
 前提
