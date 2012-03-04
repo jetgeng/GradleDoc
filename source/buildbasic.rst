@@ -254,21 +254,145 @@ Groovy的能力远不止定义一个任务。还能做其他，例如你还能�
     Hello world!
     Greetings from the hello task.
 
-
+这让代码变得非常易读。特别是在使用由插件（plugin）所提供的开箱即用的任务时（例如 compile ）。
 
 
 
 任务的动态属性
 ------------------------------------------------------------    
 
+你可以给任何任务赋上任意的新属性。
+
+例 5.12 给任务赋值
+"""""""""""""""""""""""
+build.gradle
+
+.. code-block:: groovy
+    
+    task myTask
+    myTask.myProperty = 'myCustomPropValue'
+
+    task showProps << {
+        println myTask.myProperty
+    }
+
+
+
+strong: `gradle -q showProps` 的输出结果
+
+.. code-block:: console
+
+    > gradle -q taskname
+    myCustomPropValue 
+
+
+
 使用Ant任务
 ------------------------------------------------------------    
+
+Ant 任务是Gradle世界的一等公民，他可以完美并且简单的集成到Gradle中。Groovy发行包中包括了一个了不起的AntBuilder.  在Groovy中使用 Ant任务要不在build.xml文件中使用要方便和强大的多。从下面的例子中你将学习到如何执行一个ant任务和如何读取ant的属性。
+
+例 5.13 使用AntBuilder 来执行ant.loadfile
+"""""""""""""""""""""""""""""""""""""""""""
+
+build.gradle
+
+.. code-block:: groovy
+    
+    task loadfile << {
+            def files = file('../antLoadfileResources').listFiles().sort()
+            files.each { File file ->
+            if (file.isFile()) {
+                ant.loadfile(srcFile: file, property: file.name) println " *** $file.name ***"
+                println "${ant.properties[file.name]}"
+            } 
+        }
+    }
+    
+    
+
+strong:`gradle -q loadfile` 的输出结果
+
+.. code-block:: console
+
+    > gradle -q loadfile  
+    *** agile.manifesto.txt ***
+    Individuals and interactions over processes and tools
+    Working software over comprehensive documentation
+    Customer collaboration  over contract negotiation
+    Responding to change over following a plan
+     *** gradle.manifesto.txt ***
+    Make the impossible possible, make the possible easy and make the easy elegant
+    (inspired by Moshe Feldenkrais)
+    
+
+在你的构建脚本中你可以用Ant做很多事情。具体内容请参考 :ref:`usingAntFromGradle` 。
+.. 这里丢掉了一些重要的信息。
 
 使用方法
 ------------------------------------------------------------    
 
+把公用的内容抽取成方法是有效组织构建逻辑的第一步。
+
+例 5.14 用方法来组织构建逻辑
+"""""""""""""""""""""""""""""""
+
+build.gradle
+
+.. code-block:: groovy
+
+    task checksum << {
+        fileList('../antLoadfileResources').each {File file ->
+            ant.checksum(file: file, property: "cs_$file.name")
+            println "$file.name Checksum: ${ant.properties["cs_$file.name"]}"
+        }
+    }
+    task loadfile << {
+        fileList('../antLoadfileResources').each {File file ->
+            ant.loadfile(srcFile: file, property: file.name)
+            println "I'm fond of $file.name"
+        }
+    }
+    File[] fileList(String dir) {
+        file(dir).listFiles({file -> file.isFile() } as FileFilter).sort()
+    }
+
+
+strong:`gradle -q loadfile` 的输出结果
+
+.. code-block:: console
+
+    > gradle -q loadfile
+    I'm fond of agile.manifesto.txt
+    I'm fond of gradle.manifesto.txt
+    
+不久你将会看到在多项目构建中不同的子项目（subprojects）之间共享这种方法。另外，Gradle还提供了其他非常有效的方式让你来组织你复杂的构建逻辑。我们将用一整章 :ref:`OrganizingBuildLogic` 来介绍他。
+
+
 默认任务
 ------------------------------------------------------------    
+
+Gradle允许你为构建定义一个或多个默认任务。
+
+例 5.15 定义默认任务
+"""""""""""""""""""""""
+build.gradle
+
+.. code-block:: groovy
+    
+    defaultTasks 'clean', 'run'
+    task clean << {
+        println 'Default Cleaning!'
+    }
+    task run << {
+        println 'Default Running!'
+    }
+    task other << {
+        println "I'm not a default task!"
+    }
+    
+
+
 
 使用DAG配置
 ------------------------------------------------------------    

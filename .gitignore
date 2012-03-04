@@ -1,3 +1,7 @@
+GradleDocCn
+*.exe
+ReadMe.txt
+VERSION
 build
 class
 *.swp
