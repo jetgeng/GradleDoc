@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>构建脚本基础 &mdash; Gradle文档中文版 v0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="Gradle文档中文版 v0.1.0 documentation" href="index.html" />
+    <link rel="next" title="Java项目快速上手" href="javaquick.html" />
+    <link rel="prev" title="安装Gradle" href="install.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="javaquick.html" title="Java项目快速上手"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="安装Gradle"
+             accesskey="P">上一页</a> |</li>
+        <li><a href="index.html">Gradle文档中文版 v0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">构建脚本基础</a><ul>
+<li><a class="reference internal" href="#projects-tasks">项目(Projects)和任务(tasks)</a></li>
+<li><a class="reference internal" href="#hello-world">Hello world</a></li>
+<li><a class="reference internal" href="#id3">短任务的定义</a></li>
+<li><a class="reference internal" href="#id4">构建脚本就是代码</a></li>
+<li><a class="reference internal" href="#id5">任务的依赖</a></li>
+<li><a class="reference internal" href="#id6">动态任务</a></li>
+<li><a class="reference internal" href="#id7">操作已存在的任务</a></li>
+<li><a class="reference internal" href="#id8">快捷符号</a></li>
+<li><a class="reference internal" href="#id9">任务的动态属性</a></li>
+<li><a class="reference internal" href="#ant">使用Ant任务</a></li>
+<li><a class="reference internal" href="#id10">使用方法</a></li>
+<li><a class="reference internal" href="#id11">默认任务</a></li>
+<li><a class="reference internal" href="#dag">使用DAG配置</a></li>
+<li><a class="reference internal" href="#id12">总结</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="install.html"
+                        title="上一章">安装Gradle</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="javaquick.html"
+                        title="下一章">Java项目快速上手</a></p>
+  <h3>本页</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/buildbasic.txt"
+           rel="nofollow">显示源代码</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>快速搜索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="搜索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    输入相关的模块，术语，类或者函数名称进行搜索
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="buildbasics">
+<span id="id1"></span><h1>构建脚本基础<a class="headerlink" href="#buildbasics" title="永久链接至标题">¶</a></h1>
+<div class="section" id="projects-tasks">
+<h2>项目(Projects)和任务(tasks)<a class="headerlink" href="#projects-tasks" title="永久链接至标题">¶</a></h2>
+<p>Gradle 中的任何内容都是基于项目和任务这两个基本概念。</p>
+<p>每个Gradle构建都是由一个或多个项目组成。一个项目代表你软件产品中可以独立构建的一些模块。具体的依赖于你要构建什么。例如，一个项目可以代表一个jar包或者是一个web应用程序。他也可以代表将一堆由其他项目提供的jar组装成一个发布zip。项目不一定代表构建什么东西，也可以代表一些动作比如发布你应用到测试或生产环境。如果现在理解这些有点模糊也没有关系。</p>
+<p>每个项目都是由一个或多个任务组成。每个任务代表构建系统中的一个原子操作。例如编译一些类，创建一个jar，生成Java 文档或者发布一些包到仓库中。</p>
+<p>现在我们就来看看在一个项目中定义一些简单的任务。在后续的章节中我们将介绍（） 以及关于项目和任务的更多内容。</p>
+</div>
+<div class="section" id="hello-world">
+<h2>Hello world<a class="headerlink" href="#hello-world" title="永久链接至标题">¶</a></h2>
+<p>你可以通过 <tt class="docutils literal"><span class="pre">gradle</span></tt> 命令来运行一个Gradle 构建。 <tt class="docutils literal"><span class="pre">gradle</span></tt> 命令将会在当前目录中寻找名为 <tt class="docutils literal"><span class="pre">build.gradle</span></tt> 的文件 <a class="footnote-reference" href="#id13" id="id2">[2]</a> 。从严格意义上来讲 <tt class="docutils literal"><span class="pre">build.gradle</span></tt> 是一个构建配置脚本，但我们还是习惯性的称他为构建脚本。 这个构建脚本定义了一个项目（project) 以及这个项目的任务。</p>
+<p>动手尝试，创建一个名为 build.gradle 的文件，其内容如下。</p>
+<div class="highlight-ruby"><div class="highlight"><pre><span class="n">task</span> <span class="n">hello</span> <span class="p">{</span>
+    <span class="n">doLast</span> <span class="p">{</span>
+        <span class="n">println</span> <span class="s1">&#39;Hello world!&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>在命令行中，进入build.gradle 所在目录并通过 <tt class="docutils literal"><span class="pre">gradle</span> <span class="pre">-q</span> <span class="pre">hello</span></tt> 来运行这个脚本。</p>
+<div class="sidebar">
+<p class="first sidebar-title">-q的作用</p>
+<p class="last">在该文档中大部分例子都会带一个 -q 选项。阻止Gradle本身log输出。这样就只有任务的输出才会显示。这样就能让该手册中的</p>
+</div>
+<p><strong>gradle -q hello</strong> 的输出结果如下</p>
+<div class="highlight-rst"><div class="highlight"><pre>&gt; gradle -q hello
+Hello world!
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>短任务的定义<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id4">
+<h2>构建脚本就是代码<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id5">
+<h2>任务的依赖<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id6">
+<h2>动态任务<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id7">
+<h2>操作已存在的任务<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id8">
+<h2>快捷符号<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id9">
+<h2>任务的动态属性<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="ant">
+<h2>使用Ant任务<a class="headerlink" href="#ant" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id10">
+<h2>使用方法<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id11">
+<h2>默认任务<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="dag">
+<h2>使用DAG配置<a class="headerlink" href="#dag" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id12">
+<h2>总结<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>这一行为可以通过命令选项来改变。</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="javaquick.html" title="Java项目快速上手"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="安装Gradle"
+             >上一页</a> |</li>
+        <li><a href="index.html">Gradle文档中文版 v0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; 版权所有 2012, Jet Geng.
+      使用 <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

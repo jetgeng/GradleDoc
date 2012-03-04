@@ -1,0 +1,181 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>安装Gradle &mdash; Gradle文档中文版 v0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="Gradle文档中文版 v0.1.0 documentation" href="index.html" />
+    <link rel="next" title="构建脚本基础" href="buildbasic.html" />
+    <link rel="prev" title="指南目录" href="tutorial.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="buildbasic.html" title="构建脚本基础"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="指南目录"
+             accesskey="P">上一页</a> |</li>
+        <li><a href="index.html">Gradle文档中文版 v0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">安装Gradle</a><ul>
+<li><a class="reference internal" href="#id1">前提</a></li>
+<li><a class="reference internal" href="#id2">下载</a></li>
+<li><a class="reference internal" href="#id3">解压</a></li>
+<li><a class="reference internal" href="#id4">环境变量设定</a></li>
+<li><a class="reference internal" href="#id5">运行并测试安装结果</a></li>
+<li><a class="reference internal" href="#jvm">JVM设定</a></li>
+<li><a class="reference internal" href="#id6">获取帮助</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="上一章">指南目录</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="buildbasic.html"
+                        title="下一章">构建脚本基础</a></p>
+  <h3>本页</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/install.txt"
+           rel="nofollow">显示源代码</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>快速搜索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="搜索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    输入相关的模块，术语，类或者函数名称进行搜索
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="gradle">
+<span id="install"></span><h1>安装Gradle<a class="headerlink" href="#gradle" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>前提<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>Gradle依赖于JDK 1.5或更高版本。Gradle自带了Groovy库，所以不依赖系统中是否有Groovy。任何系统中已经安装的Groovy将会被Gradle忽略。</p>
+<p>Gradle会使用系统路径中的任何JDK（通过 <strong>java -version</strong> 来检查）。另外你也可以通过设定 <strong>JAVA_HOME</strong> 这个环境变量的方式，来指定你想使用的JDK。</p>
+</div>
+<div class="section" id="id2">
+<h2>下载<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>你可以到 <a class="reference external" href="http://gradle.org">Gradle的官网</a> 去下载Gradle一个发行版本。</p>
+</div>
+<div class="section" id="id3">
+<h2>解压<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<dl class="docutils">
+<dt>Gradle的发行包是一个Zip格式的文件。在一个发行包会包括如下内容：</dt>
+<dd><ul class="first last simple">
+<li>Gradle的二进制文件</li>
+<li>用户手册(HTML 格式和PDF格式)</li>
+<li>DSL 参考手册</li>
+<li>API 文档（Javadoc 和 Groovydoc）</li>
+<li>扩展示例，包括在用户手册中的例子，一些完整的，复杂一些的构建脚本。你可以在这些脚本的基础上迅速写出你自己构建脚本。</li>
+<li>二进制文件的源代码。这个只是用作参考。如果你想自己构建Gradle，你需要下载源代码发行包或直接从代码仓库检出源代码。 详细内容请参考 <a class="reference external" href="http://gradle.org">Gradle的官网</a></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition-un-x admonition">
+<p class="first admonition-title">对于Un*x用户</p>
+<p class="last">如果你想想设定文件的权限属性时，你就需要一个和GNU 兼容的工具来解压Gradle。我们额外提及这一点是因为Mac OS X
+中有些zip程序将忽略掉文件的权限属性。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>环境变量设定<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>为了让Gradle跑起来，需要把 <tt class="docutils literal"><span class="pre">GRADLE_HOME/bin</span></tt> 加入 <tt class="docutils literal"><span class="pre">PATH</span></tt> 环境变量中。通常情况下这就够了。</p>
+</div>
+<div class="section" id="id5">
+<h2>运行并测试安装结果<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>现在你可以通过gradle来跑一下Gradle。在命令行输入 <em>gradle -v</em> , 如果Gradle被正确安装了你将得到如下输出</p>
+<div class="highlight-rst"><div class="highlight"><pre><span class="gh">------------------------------------------------------------</span>
+<span class="gh">Gradle 1.0-milestone-3</span>
+<span class="gh">------------------------------------------------------------</span>
+
+Gradle build time: Monday, 25 April 2011 5:40:11 PM EST
+Groovy: 1.7.10
+Ant: Apache Ant(TM) version 1.8.2 compiled on December 20 2010
+Ivy: 2.2.x-local-20110825173607
+JVM: 1.6.0_29 (Apple Inc. 20.4-b02-402)
+OS: Mac OS X 10.7.2 x86_64
+</pre></div>
+</div>
+</div>
+<div class="section" id="jvm">
+<h2>JVM设定<a class="headerlink" href="#jvm" title="永久链接至标题">¶</a></h2>
+<p>为Gradle设定的JVM选项可以通过 <tt class="docutils literal"><span class="pre">GRADLE_OPTS</span></tt> 和 <tt class="docutils literal"><span class="pre">JAVA_OPTS</span></tt> 这两个环境变量来设定。这两个变量也可以同时使用。 <tt class="docutils literal"><span class="pre">JAVA_OPTS</span></tt> 这个变量是多个Java 应用程序所公用的。 典型的用法是在 <tt class="docutils literal"><span class="pre">JAVA_OPTS</span></tt> 中设定HTTP代理，在 <tt class="docutils literal"><span class="pre">GRADLE_OPTS</span></tt> 中设定内存相关内容。 另外这两个变量也可以在 <strong>gradle</strong> 或 <strong>gradlew</strong> 脚本的顶端设定。</p>
+</div>
+<div class="section" id="id6">
+<h2>获取帮助<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>你可以在查看 <tt class="docutils literal"><span class="pre">GRADLE_HOME/docs/userguide/userguide.html</span></tt> 处的用户手册。当然你也可在 <cite>Gradle官网 &lt;http://www.gradle.org/documentation.html&gt;</cite> 找到他。 或者在命令行中 <strong>gradle help</strong> 打印出命令的帮助。通过 <strong>gradle tasks</strong> 打印出当前Gradle构建所包含的所有任务。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="buildbasic.html" title="构建脚本基础"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="指南目录"
+             >上一页</a> |</li>
+        <li><a href="index.html">Gradle文档中文版 v0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; 版权所有 2012, Jet Geng.
+      使用 <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
