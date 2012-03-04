@@ -392,12 +392,64 @@ build.gradle
     }
     
 
+strong: `gradle -q` 的输出结果
 
+.. code-block:: console
+    
+    > gradle -q
+    Default Cleaning!
+    Default Running!
+
+这就相当于运行了 :strong:`gradle clean,run` 。在一个多项目的构建中每个子项目可以拥有自己的默认任务。如果子任务没有指定默认任务，那么他的默认任务就用父项目的默认任务（如果定义了的话）
 
 使用DAG配置
-------------------------------------------------------------    
+------------------------------------------------------------  
+
+就像我们后面要描述的（:ref:`BuildLifecycle` ）Gradle有一个配置阶段和执行阶段。当执行完配置阶段后，Gradle就知道要执行的所有任务。 Gradle提供了一个Hook让用户使用这些信息。通过这些Hook你可以检验release任务是不是将要被执行，
+根据这个判断你可以给一些变量赋不同的值。
+
+下面的例子中，执行distribution 和 release任务时version这个变量有不同的值。
+
+例 5.16 根据选择不同的任务，build给出不同的结果
+"""""""""""""""""""""""""""""""""""""""""""""""""
+build.gradle
+
+.. code-block:: groovy
+    
+    task distribution << {
+        println "We build the zip with version=$version"
+    }
+    task release(dependsOn: 'distribution') << {
+        println 'We release now'
+    }
+    gradle.taskGraph.whenReady {taskGraph -> if (taskGraph.hasTask(release)) {
+    version = '1.0' } else {
+            version = '1.0-SNAPSHOT'
+        }
+    }
+   
+ 
+strong:`gradle -q distribution` 的输出结果
+ 
+.. code-block:: console
+ 
+    > gradle -q distribution
+    We build the zip with version=1.0-SNAPSHOT
+
+strong:`gradle -q release` 的输出结果
+ 
+.. code-block:: console
+
+    > gradle -q release
+    We build the zip with version=1.0
+    We release now
+
 
 总结
 ------------------------------------------------------------    
+
+在这一章中，我们对任务有了一个初步的了解。但是他的故事还远远没有结束。如果你想得到更多的信息，请看看 :ref:`MoreAboutTasks`
+
+或者继续下面的章节 :ref:`javaquickstart` 和 :ref:`dependency`
 
 .. [2] 这一行为可以通过命令选项来改变。
