@@ -4,14 +4,15 @@
 
 概述
 ==============================================================================
-功能特点
+特点
 ------------------------------------------------------------------------------
-下面列出 Gradle_ 拥有的一些功能。
+下面是列举了一些 Gradle_ 的特点.
 
-**申明式构建和惯例式构建**
-    基于Groovy的高扩展的领域语言（DSL）是Gradle的核心。Gradle通过提供可以任意组装的语言元素，把声明式构建推向了一个新的高度。
-Language for dependency based programming
-    声明式语言
+ :申明式构建和约定事构建:
+    基于Groovy的高扩展的领域语言（DSL）是Gradle的核心，她通过提供可以任意组装的语言元素，把声明式构建推向了一个新的高度。另外这些元素还提供对Java,Groovy,OSGi,Web以及Scala这些类型的项目的传统构建方式的支持。你甚至可以通过添加你自己的语言元素或增强现有元素的方式来扩展这个语言。就这样提供优雅的，可维护的，易理解的构建。
+    
+Language for ependency based programming
+    声明式语言. 他提供了极大的灵活让Gralde来满足你独一无二的需求。
 Structure you build
     结构化你的脚本
 Deep API
@@ -39,5 +40,4 @@ Gradle 包装器
 也许你会说为什么不直接用Java来做构建脚本。这是一个好问题。那样的话构建对所有开发人员将有最高的透明程度，并且拥有最平滑的学习曲线。
 
 
-.. _DSL: http://en.wikipedia.org/wiki/Domain-specific_language 
-.. _ASL: http://www.apache.org/licenses/LICENSE-2.0.html
+.. include:: links.rst

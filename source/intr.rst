@@ -20,6 +20,4 @@
 这个手册就像 Gradle_ 本身一样,处在一个非常活跃的开发阶段。 Gradle_ 有些部分的文档还没达到预期,有些内容还不是完全清晰易懂或者假定你已经有 Gradle_ 基础了, 我们需要你的帮助来改进这份文档。你可以在 Gradle_ 的网站上找到如何为该文档做贡献的信息。
 另外,你可以在我们 wiki_ 中找到很多例子以及其他有用的资料, 也欢迎你自己的例子资料。
 
-.. _wiki: http://docs.codehaus.org/display/GRADLE/User+guide
-.. _Gradle: http://gradle.org
-.. _Ivy: http://ant.apache.org/ivy/
+.. include:: links.rst
